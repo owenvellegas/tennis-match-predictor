@@ -1,4 +1,5 @@
-from src.data_loader import load_data, preprocess_data
+from src.data_processing import load_data, preprocess_data, process_data
+from src.model.train_model import train_model
 
 def main():
     files = [
@@ -18,9 +19,11 @@ def main():
 
     raw_df = load_data(files, data_dir="data")
 
-    processed_df = preprocess_data(raw_df)
+    preprocessed_df = preprocess_data(raw_df)
 
-    print(processed_df.head())
+    processed_df = process_data(preprocessed_df)
+
+    train_model(processed_df)
 
 
 if __name__ == "__main__":
